@@ -68,8 +68,8 @@ def get_by_nameORcity():
     args = request.args
     name_ = args.get('name').strip('\'"').upper() if 'name' in args else None
     city_ = args.get('city').strip('\'"').upper() if 'city' in args else None
-    city_ = city_.split(",")
-    cityls = [x.strip() for x in city_]
+    cityls = city_.split(",")
+    cityls = [x.strip() for x in cityls]
 
     offset_ = args.get('offset') if 'offset' in args else 0
     limit_ = args.get('limit') if 'limit' in args else None
