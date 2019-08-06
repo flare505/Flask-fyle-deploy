@@ -35,8 +35,9 @@ def login():
         password = request.json.get('password', None)
         if username != 'admin' or password != 'admin':
             return jsonify({"msg": "Invalid username or password"}), 401
-        expires = datetime.timedelta(seconds = 300)
-        ret = {'access_token': create_access_token(username,expires_delta=expires)}
+        expires = datetime.timedelta(days = 5)
+        ret = {'access_token': create_access_token(username,expires_delta=expires),
+               'validity' : str(expires)}
         return jsonify(ret), 200
     else:
         return jsonify({"msg": "missing username and password"})
@@ -60,7 +61,10 @@ def get_by_ifsc(ifsc_):
     if len(ifsc_) == 11:
         try:
             bank = Bank.query.filter_by(ifsc=ifsc_).first()
-            return jsonify(bank.serialize())
+            if bank:
+                return jsonify(bank.serialize())
+            else:
+                return jsonify({"msg": "IFSC not found"})
         except Exception as e:
             return(str(e))
     else:
