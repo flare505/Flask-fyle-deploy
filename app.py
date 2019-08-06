@@ -17,15 +17,15 @@ from models import Bank
 @app.route("/")
 def hello():
     return """
-        ****Fyle Assignment****
-        
-        To generate token: /login
-        To fetch all records: /getall
-        To fetch data by ifsc: /get/<ifsc>
-        To fetch data by name &| city: /get?name=<bank_name>&city=<city>
-        
-        Note: pass limit or offset as params
-        ***
+        ****Fyle Assignment**** \n
+        \n
+        To generate token: /login \n
+        To fetch all records: /getall \n
+        To fetch data by ifsc: /get/<ifsc> \n
+        To fetch data by name &| city: /get?name=<bank_name>&city=<city> \n
+        \n
+        Note: pass limit or offset as params\n
+        ***\n
     """
 
 @app.route('/login', methods=['POST'])
@@ -90,7 +90,7 @@ def get_by_nameORcity():
             return(str(e))
     elif name_:
         try:
-            banks = Bank.query.filter_by(bank_name = name_).order_by(Bank.ifsc).offset(offset_).limit(limit_).all()
+            banks = Bank.query.filter(bank_name=name_).order_by(Bank.ifsc).offset(offset_).limit(limit_).all()
             return jsonify([e.serialize() for e in banks])
         except Exception as e:
             return(str(e))
