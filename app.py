@@ -5,7 +5,7 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fyle:test123@localhost/fyledb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ybaswijirarqwy:ed9097a844499b7b2c4cd407efc3259343e84eec47f1ce1150850dd02578bcde@ec2-107-22-222-161.compute-1.amazonaws.com:5432/d4ngqn3oem0js4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'super-secret'
 
