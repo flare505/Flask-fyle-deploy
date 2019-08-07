@@ -1,5 +1,6 @@
 from app import db
 
+# ORM model for bank_branches
 class Bank(db.Model):
     __tablename__ = 'bank_branches'
 
@@ -12,6 +13,7 @@ class Bank(db.Model):
     state = db.Column(db.String())
     bank_name = db.Column(db.String())
 
+    # serialize function to return record as dictionary
     def serialize(self):
         return {
             'ifsc': self.ifsc,
